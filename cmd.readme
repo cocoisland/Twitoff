@@ -1,0 +1,34 @@
+Python 3.5.3 (default, Sep 27 2018, 17:25:39) 
+[GCC 6.3.0 20170516] on linux
+App: twitoff.app [production]
+Instance: /repos/soycode/TwitOff/instance
+>>> from twitoff.models import *
+>>> DB.drop_all()
+>>> DB.create_all()
+>>> u1 = User(name='austen')
+>>> t1 = Tweet(text='Lambda School Rocks!')
+>>> u1.tweets
+[]
+>>> u1.tweets.append(t1)
+>>> DB.session.add(u1)
+>>> DB.session.add(t1)
+>>> DB.session.commit()
+>>> 
+(TwitOff) root@d32c1e1b70d9:/repos/soycode/TwitOff# FLASK_APP=twitoff:APP flask shell
+/root/.local/share/virtualenvs/TwitOff-4ygZNXmP/lib/python3.5/site-packages/flask_sqlalchemy/__init__.py:794: FSADeprecationWarning: SQLALCHEMY_TRACK_MODIFICATIONS adds significant overhead and will be disabled by default in the future.  Set it to True or False to suppress this warning.
+  'SQLALCHEMY_TRACK_MODIFICATIONS adds significant overhead and '
+Python 3.5.3 (default, Sep 27 2018, 17:25:39) 
+[GCC 6.3.0 20170516] on linux
+App: twitoff.app [production]
+Instance: /repos/soycode/TwitOff/instance
+>>> from twitoff.models import User
+>>> u1 = User.query.filter(name == 'austen').first()
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+NameError: name 'name' is not defined
+>>> u1 = User.query.filter(User.name == 'austen').first()
+>>> u1
+<User austen>
+>>> u1.tweets
+[<Tweet Lambda School Rocks!>]
+>>> 
