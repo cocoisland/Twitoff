@@ -1,3 +1,1 @@
-FLASK_APP=twitoff:APP
-
-
+export FLASK_APP=twitoff:APP
