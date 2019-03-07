@@ -18,6 +18,11 @@ def create_app():
         users = User.query.all()
         return render_template('base.html', title='Home', users=users)
 
+    @app.route('/user', methods=['GET'])
+    def queryUser():
+        users = User.query.all()
+        return render_template('alluser.html', title='All Users', users=users)
+
 #import pdb; pdb.set_trace()
     @app.route('/user/<name>', methods=['GET'])
     def fetchUser(name):
@@ -28,8 +33,8 @@ def create_app():
         return render_template('user.html', title=name, tweets=twitter_tweets, 
           db_tweets=db_tweets, message=message)
 
-    @app.route('/user', methods=['POST'])
-    def user(name=None):
+    @app.route('/adduser', methods=['POST'])
+    def adduser(name=None):
         message = ''
         name = name or request.values['user_name']
         try:

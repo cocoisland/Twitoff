@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<link rel="stylesheet" href="style.css" type="text/css">
+
+<h2>User: {{ title }}</h2>
+
+<p>{{ message }}</p>
+
+   {% for user in users %}
+   <li> {{ user.name }} </li>
+   {% endfor %}
+
+</TABLE>
+{% endblock %}
